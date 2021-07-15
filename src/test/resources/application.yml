@@ -8,3 +8,11 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create
+
+blog:
+  title: DevPub
+  subtitle: 'Подзаголовок'
+  phone: '+7 913 000-11-11'
+  email: test@gmail.com
+  copyright: Тест Тестович
+  copyrightFrom: 1917

@@ -1,7 +1,8 @@
 package ru.skillbox.blogenginediploma.model;
 
+import ru.skillbox.blogenginediploma.service.settings.impl.GlobalSettings;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +22,12 @@ public class GlobalSetting {
     private String value;
 
     public GlobalSetting() { }
+
+    public GlobalSetting(String code, String name, String value) {
+        this.code = code;
+        this.name = name;
+        this.value = value;
+    }
 
     public Integer getId() {
         return id;

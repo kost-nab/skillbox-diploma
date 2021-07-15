@@ -9,3 +9,10 @@ spring:
     hibernate:
       ddl-auto: create
 
+blog:
+  title: DevPub
+  subtitle: 'Рассказы разработчиков'
+  phone: '+7 913 000-00-00'
+  email: kostnab1991@gmail.com
+  copyright: 'Константин Набоков'
+  copyrightFrom: 2021
