@@ -1,5 +1,8 @@
 package ru.skillbox.blogenginediploma.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,6 +12,8 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "posts")
+@Data
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,80 +48,6 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post", fetch = FetchType.EAGER)
     private List<Tag2Post> tag2Posts;
-
-    public Post() { }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public ModerationStatus getModerationStatus() {
-        return moderationStatus;
-    }
-
-    public void setModerationStatus(ModerationStatus moderationStatus) {
-        this.moderationStatus = moderationStatus;
-    }
-
-    public User getModerator() {
-        return moderator;
-    }
-
-    public void setModerator(User moderator) {
-        this.moderator = moderator;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public int getViewCount() {
-        return viewCount;
-    }
-
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
-    }
 
     public List<Tag> getTags() {
         return tag2Posts.stream()

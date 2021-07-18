@@ -1,11 +1,16 @@
 package ru.skillbox.blogenginediploma.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
+@Data
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,64 +35,6 @@ public class User {
 
     @Column(columnDefinition = "TEXT")
     private String photo;
-
-    public User() { }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public boolean isModerator() {
-        return isModerator;
-    }
-
-    public void setModerator(boolean moderator) {
-        isModerator = moderator;
-    }
-
-    public LocalDateTime getRegTime() {
-        return regTime;
-    }
-
-    public void setRegTime(LocalDateTime regTime) {
-        this.regTime = regTime;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     @Override
     public boolean equals(Object o) {

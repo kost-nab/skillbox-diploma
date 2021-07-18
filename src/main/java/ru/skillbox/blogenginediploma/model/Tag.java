@@ -1,13 +1,17 @@
 package ru.skillbox.blogenginediploma.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tags")
+@Data
+@NoArgsConstructor
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,22 +22,6 @@ public class Tag {
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "tag")
     private List<Tag2Post> tag2Posts;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public List<Post> getPosts() {
         return tag2Posts.stream()
@@ -54,18 +42,5 @@ public class Tag {
         }
         tag2Posts.remove(tag2Post.get());
         return true;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Tag tag = (Tag) o;
-        return Objects.equals(id, tag.id) && Objects.equals(name, tag.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
     }
 }
