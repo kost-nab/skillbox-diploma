@@ -2,8 +2,10 @@ package ru.skillbox.blogenginediploma.controller.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.skillbox.blogenginediploma.api.response.InitResponse;
+import ru.skillbox.blogenginediploma.api.response.tag.TagResponse;
 import ru.skillbox.blogenginediploma.service.settings.SettingsService;
 
 import java.util.Map;
@@ -27,5 +29,14 @@ public class ApiGeneralController {
     @GetMapping("settings")
     public Map<String, Object> settings() {
         return settingsService.getSettings();
+    }
+
+    @GetMapping("tag")
+    public TagResponse getTags(
+            @RequestParam(required = false) String query
+    ) {
+        // TODO реализовать получение тэгов
+
+        return new TagResponse();
     }
 }

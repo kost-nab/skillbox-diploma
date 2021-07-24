@@ -40,4 +40,13 @@ class ApiGeneralControllerTest extends AbstractIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJson));
     }
+
+    @Test
+    void noTagTest() throws Exception {
+        String expectedJson = mapper.writeValueAsString(expectedDefaultValuesMap);
+        mockMvc.perform(get(BASE_PATH + "tag"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{tags:[]}"));
+    }
+
 }
