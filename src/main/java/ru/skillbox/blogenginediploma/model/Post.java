@@ -2,6 +2,7 @@ package ru.skillbox.blogenginediploma.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jsoup.Jsoup;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +16,8 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 public class Post {
+    private static final int ANNOUNCE_LENGTH = 150;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -68,6 +71,17 @@ public class Post {
         }
         tag2Posts.remove(tag2Post.get());
         return true;
+    }
+
+    public String getAnnounce() {
+        String plainText = Jsoup.parse(text).text();
+        if (plainText.length() <= ANNOUNCE_LENGTH) {
+            return plainText;
+        }
+        int lastSpaceIndex = plainText.lastIndexOf(" ", ANNOUNCE_LENGTH - 1);
+        String announce = lastSpaceIndex == -1 ?
+                plainText : plainText.substring(0, lastSpaceIndex);
+        return announce.concat("...");
     }
 
     @Override
