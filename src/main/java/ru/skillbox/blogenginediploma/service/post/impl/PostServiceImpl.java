@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ru.skillbox.blogenginediploma.api.request.post.PostSortMode;
 import ru.skillbox.blogenginediploma.api.response.post.PostResponse;
 import ru.skillbox.blogenginediploma.api.response.post.PostsResponse;
+import ru.skillbox.blogenginediploma.model.ModerationStatus;
 import ru.skillbox.blogenginediploma.model.Post;
 import ru.skillbox.blogenginediploma.repository.PostRepo;
 import ru.skillbox.blogenginediploma.service.post.PostService;
@@ -33,7 +34,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostsResponse getAllPosts(int offset, int limit, PostSortMode sortMode) {
-        Page<Post> allPosts = postRepo.getAllPosts(PageRequest.of(offset, limit, MODE_SORT_MAP.get(sortMode)));
+        Page<Post> allPosts = postRepo.findByIsActiveTrueAndModerationStatus(
+                ModerationStatus.ACCEPTED, PageRequest.of(offset, limit, MODE_SORT_MAP.get(sortMode)));
         List<PostResponse> responses = allPosts.get()
                 .map(post -> modelMapper.map(post, PostResponse.class))
                 .collect(Collectors.toList());
