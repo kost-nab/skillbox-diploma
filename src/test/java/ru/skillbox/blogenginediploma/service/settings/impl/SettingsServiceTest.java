@@ -67,5 +67,6 @@ class SettingsServiceTest {
 
     @Test
     void updateSettings() {
+        // TODO test settings updating
     }
 }

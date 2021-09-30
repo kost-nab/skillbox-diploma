@@ -8,6 +8,7 @@ import ru.skillbox.blogenginediploma.api.request.post.PostSortMode;
 import ru.skillbox.blogenginediploma.api.response.post.PostsResponse;
 import ru.skillbox.blogenginediploma.service.post.PostService;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
@@ -25,6 +26,6 @@ public class ApiPostController {
             @RequestParam(required = false) Optional<Integer> limit,
             @RequestParam(required = false) Optional<PostSortMode> mode
             ) {
-        return postService.getAllPosts(offset.orElse(0), limit.orElse(10), mode.orElse(PostSortMode.RECENT));
+        return postService.getAllPosts(offset.orElse(0), limit.orElse(10), mode.orElse(PostSortMode.RECENT), LocalDateTime.now());
     }
 }

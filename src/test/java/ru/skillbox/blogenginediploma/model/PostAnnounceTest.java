@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PostAnnounceTest {
-    private static Post testPost = new Post();
-    private static String shortAnnounce =
+    private static final Post testPost = new Post();
+    private static final String shortAnnounce =
             "В России полным ходом идет вакцинация, привиться можно двумя вариантами \"Спутника\", \"ЭпиВакКороной\" и \"КовиВаком\".";
 
     @ParameterizedTest

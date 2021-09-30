@@ -8,7 +8,7 @@ public enum GlobalSettings {
     STATISTICS_IS_PUBLIC("Показывать всем статистику блога", GlobalSettingValueFactory.newInstance(false));
 
     private final String settingName;
-    private GlobalSettingValue<?> defaultValue;
+    private final GlobalSettingValue<?> defaultValue;
 
     GlobalSettings(String settingName, GlobalSettingValue<?> defaultValue) {
         this.settingName = settingName;

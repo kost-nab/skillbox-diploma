@@ -1,7 +1,9 @@
 package ru.skillbox.blogenginediploma.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.jsoup.Jsoup;
 
 import javax.persistence.*;
@@ -51,6 +53,19 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post", fetch = FetchType.EAGER)
     private List<Tag2Post> tag2Posts;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "post")
+    private List<Comment> comments;
+
+    @Formula("(SELECT count(pv.*) FROM post_votes pv WHERE pv.post_id = id AND pv.value = 1)")
+    @Setter(AccessLevel.NONE)
+    private long likeCount;
+    @Formula("(SELECT count(pv.*) FROM post_votes pv WHERE pv.post_id = id AND pv.value = -1)")
+    @Setter(AccessLevel.NONE)
+    private long dislikeCount;
+    @Formula("(SELECT count(pc.*) FROM post_comments pc WHERE pc.post_id = id)")
+    @Setter(AccessLevel.NONE)
+    private long commentCount;
 
     public List<Tag> getTags() {
         return tag2Posts.stream()
